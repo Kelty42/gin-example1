@@ -15,7 +15,7 @@ func main() {
     r := gin.New()
 
     // Добавляем middleware для логирования
-    r.Use(middlewares.JSONLoggerMiddleware())
+    r.Use(middlewares.JSONLoggerMiddleware(), gin.Recovery())
 
     // Маршруты
     r.GET("/metrics", handlers.MetricsHandler)
@@ -26,5 +26,5 @@ func main() {
     r.NoRoute(handlers.NoRouteHandler)
 
     // Запускаем сервер
-    r.Run(config.Port)
+    r.Run(config.Host + ":" + config.Port)
 }

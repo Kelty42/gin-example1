@@ -1,8 +1,9 @@
 package handlers
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/sirupsen/logrus"
+	"net/http"
+	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 func NoRouteHandler(c *gin.Context) {
@@ -15,5 +16,5 @@ func NoRouteHandler(c *gin.Context) {
         "user-agent": c.Request.UserAgent(),
     }).Error("404 page not found")
 
-    c.JSON(404, gin.H{"error": "page not found"})
+    c.JSON(http.StatusNotFound, gin.H{"error": "page not found"})
 }
